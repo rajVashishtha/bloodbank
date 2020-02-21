@@ -4,8 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>BloodBank</title>
-
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
     <link href="{% static 'adminpanel/css/home.css' %}" rel="stylesheet">
+    <script src="{% static 'adminpanel/js/home.js' %}"></script>
 </head>
 <body>
 <div class="navbar">
@@ -15,23 +19,48 @@
 <div class="navname">
     <h2>Blood Bank</h2>
 </div>
+<div class="navbutton">
+    <button onclick="change()">Register</button>
+</div>
+
 </div>
 <div class="form">
     <div class="design">
-
+        Login
     </div>
     <div class="login">
+<<<<<<< HEAD
         <form id="loginform" action="/login" method="POST">
             {% csrf_token %}
             <input type="email" placeholder="Email" name="email"  required>
             <input type="password" placeholder="Password" style=" margin-top: 2rem;" name="password" required>
+=======
+        <form id="loginform" action="">
+            {% csrf_token%}
+            <input type="email" placeholder="Email" name="email" style="margin-top: 0;"  class="input" required>
+            <input type="password" placeholder="Password"  class="input" name="password" required>
+>>>>>>> 9b5f873775aac736fa28d1104691025132348786
             <div class="buttons">
             <button type="submit" name="submit">Submit</button>
             <button>Reset</button>
             </div>
+            <p style="text-align: center;">Not Registered ? <a onclick="change()">Register</a></p>
+            
         </form>
     </div>
     <div class="signup">
+        <form id="signupform" action="">
+            {% csrf_token%}
+            <input type="text" placeholder="Organisation" name="organisation" style="margin-top: 0;"  class="input" required>
+            <input type="email" placeholder="Email" name="email"  class="input" required>
+            <input type="password" placeholder="Password" name="password" class="input" required>
+            <input type="password" placeholder="Confirm Password"  class="input" name="confirm password" required>
+            <div class="buttons">
+            <button>Submit</button>
+            <button>Reset</button>
+            </div>
+            <p style="text-align: center;">Already Registered ? <a onclick="change()">Login</a></p>
+        </form>
 
     </div>
 
