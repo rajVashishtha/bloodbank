@@ -45,6 +45,7 @@
         <form id="signupform" action="">
             {% csrf_token%}
             <input type="text" placeholder="Organisation" name="organisation" style="margin-top: 0;"  class="input" required>
+            <input type="text" placeholder="Organisation Full Address" name="organisation_address" style="margin-top: 1.5rem;"  class="input" required>
             <input type="email" placeholder="Email" name="email"  class="input" required>
             <input type="password" placeholder="Password" name="password" class="input" required>
             <input type="password" placeholder="Confirm Password"  class="input" name="confirm password" required>
