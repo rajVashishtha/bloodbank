@@ -29,12 +29,19 @@
         Login
     </div>
     <div class="login">
+<<<<<<< HEAD
+        <form id="loginform" action="/login" method="POST">
+            {% csrf_token %}
+            <input type="email" placeholder="Email" name="email"  required>
+            <input type="password" placeholder="Password" style=" margin-top: 2rem;" name="password" required>
+=======
         <form id="loginform" action="">
             {% csrf_token%}
             <input type="email" placeholder="Email" name="email" style="margin-top: 0;"  class="input" required>
             <input type="password" placeholder="Password"  class="input" name="password" required>
+>>>>>>> 9b5f873775aac736fa28d1104691025132348786
             <div class="buttons">
-            <button>Submit</button>
+            <button type="submit" name="submit">Submit</button>
             <button>Reset</button>
             </div>
             <p style="text-align: center;">Not Registered ? <a onclick="change()">Register</a></p>
