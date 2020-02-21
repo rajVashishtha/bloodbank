@@ -4,4 +4,3 @@ from django.shortcuts import render
 def adminhome(request):
     return render(request,'adminpanel/adminhome.html' )
 
-
