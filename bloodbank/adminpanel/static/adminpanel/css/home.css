@@ -29,6 +29,10 @@ html,body{
     height: 2.5rem;
     border-top-left-radius: 1.2rem;
     border-top-right-radius: 1.2rem;
+    padding-top: .5rem;
+    text-align: center;
+    color: white;
+    font-size: 1.2rem;
 }
 .login{
     padding-top: 1rem;
@@ -37,15 +41,16 @@ html,body{
     border: 1px solid #C6C5C7;
     width: 19.9rem;
 }
-.login input{
+ .input{
     margin: auto;
     width: 15rem;
     height: 2rem;
     font-size: large;
     padding-left: 2px;
     display: block;
+     margin-top: 2rem;
 }
-.login input:focus{
+.input:focus{
     border: none;
     outline: none;
     box-shadow: .1rem .1rem 1rem .08rem #844DED ;
@@ -63,4 +68,39 @@ html,body{
     background-color : #C292E2;
     border: none;
     cursor: pointer;
+}
+.signup{
+    width: 19.9rem;
+    margin: auto;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border: 1px solid #C6C5C7;
+   display: none;
+}
+
+.navbutton{
+    position: absolute; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 0;
+    flex: 1;
+    margin-right: 4rem;
+    padding-top: 1.2rem;
+    width: inherit;
+    
+}
+.navbutton button{
+    display:block;
+    width: 8rem;
+    height: 1.8rem;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: #79aee2;
+    color: white;
+}
+p > a{
+    cursor: pointer;
+    color: blue;
 }
