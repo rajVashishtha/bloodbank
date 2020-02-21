@@ -21,12 +21,12 @@
 
     </div>
     <div class="login">
-        <form id="loginform" action="">
-            {% csrf_token%}
+        <form id="loginform" action="/login" method="POST">
+            {% csrf_token %}
             <input type="email" placeholder="Email" name="email"  required>
             <input type="password" placeholder="Password" style=" margin-top: 2rem;" name="password" required>
             <div class="buttons">
-            <button>Submit</button>
+            <button type="submit" name="submit">Submit</button>
             <button>Reset</button>
             </div>
         </form>
