@@ -1,11 +1,66 @@
-h1{
-color : red;
-text-align : center;
-background-color : yellow;
-
-}
 html,body{
     padding: 0;
     margin: 0;
-
+}
+.navbar{
+    display: flex;
+    background-color: DodgerBlue;
+}
+.navname{
+    margin-left: 2rem;
+    width: 50%;
+}
+.navimage img{
+    margin-left: 2rem;
+    width: 4rem;
+    height: 4rem;
+}
+.form{
+    display: flex;
+    padding-top: 4rem;
+    flex-direction: column;
+    width: 37rem;
+    margin: auto;
+}
+.design{
+    background-color: cadetblue;
+    width: 20rem;
+    margin: auto;
+    height: 2.5rem;
+    border-top-left-radius: 1.2rem;
+    border-top-right-radius: 1.2rem;
+}
+.login{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin: auto;
+    border: 1px solid #C6C5C7;
+    width: 19.9rem;
+}
+.login input{
+    margin: auto;
+    width: 15rem;
+    height: 2rem;
+    font-size: large;
+    padding-left: 2px;
+    display: block;
+}
+.login input:focus{
+    border: none;
+    outline: none;
+    box-shadow: .1rem .1rem 1rem .08rem #844DED ;
+    border: 1px solid #844DED;
+}
+ .buttons{
+    width: 15rem;
+    margin: auto;
+    margin-top: 2rem;
+}
+.buttons button{
+    width: 48%;
+    height: 2rem;
+    color: rgb(243, 240, 235);
+    background-color : #C292E2;
+    border: none;
+    cursor: pointer;
 }
