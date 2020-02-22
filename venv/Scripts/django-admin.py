@@ -1,4 +1,4 @@
-#!d:\djangoproject\venv\scripts\python.exe
+#!d:\djangoprojects\bloodbank\venv\scripts\python.exe
 from django.core import management
 
 if __name__ == "__main__":
