@@ -42,7 +42,7 @@
         </form>
     </div>
     <div class="signup">
-        <form id="signupform" action="">
+        <form id="signupform" action="/register" method="POST">
             {% csrf_token%}
             <input type="text" placeholder="Organisation" name="organisation" style="margin-top: 0;"  class="input" required>
             <input type="text" placeholder="Organisation Full Address" name="organisation_address" style="margin-top: 1.5rem;"  class="input" required>
