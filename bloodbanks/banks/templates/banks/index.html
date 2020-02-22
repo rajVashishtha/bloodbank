@@ -1,0 +1,21 @@
+{% extends 'banks/base.html' %}
+
+{% block title %}
+    Blood Banks
+{% endblock %}
+
+
+{% block body %}
+
+    <h1>Blood Banks</h1><br><br>
+    <ul>
+        {% for bag in bloodbags %}
+            <li>
+                {{ bag }}
+            </li>
+        {% empty %}
+            <li>No Blood Banks available.</li>    
+        {% endfor %}
+    </ul>
+
+{% endblock %}
