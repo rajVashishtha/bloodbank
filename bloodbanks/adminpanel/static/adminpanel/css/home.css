@@ -2,36 +2,52 @@ html,body{
     padding: 0;
     margin: 0;
 }
-.navbar{
+.nav_bar{
     display: flex;
-    background-color: DodgerBlue;
+    justify-content: space-around;
+    background-image: linear-gradient(to right,#F89393,#E0D8D8);
+}
+.navimage{
+    display: flex;
+    justify-content: flex-start;
+    width: 33%;
 }
 .navname{
-    margin-left: 2rem;
-    width: 50%;
+    display: flex;
+    justify-content: center;
+    padding-top: .3rem;
+    width: 33%;
 }
+.navname h2{
+    font-weight: bold;
+}
+.navbutton{
+    display: flex;
+    justify-content: flex-end;
+    width: 33%;
+    padding-top: .8rem;
+}
+
 .navimage img{
-    margin-left: 2rem;
-    width: 4rem;
-    height: 4rem;
+  width: 4rem;
+  height: 4rem;
+  margin-left: 2rem;
+}
+
+.navbutton button{
+  margin-right: 2rem;
+  background-color: #F38A8A;
+  color: white;
+  width: 6rem;
+  height: 2rem;
+  font-size: 1.2rem;
+  border-radius: 1rem;
 }
 .form{
     display: flex;
     padding-top: 2rem;
     flex-direction: column;
     margin: auto;
-}
-.design{
-    background-color: cadetblue;
-    width: 20rem;
-    margin: auto;
-    height: 2.5rem;
-    border-top-left-radius: 1.2rem;
-    border-top-right-radius: 1.2rem;
-    padding-top: .5rem;
-    text-align: center;
-    color: white;
-    font-size: 1.2rem;
 }
 .login{
     padding-top: 1rem;
@@ -76,28 +92,7 @@ html,body{
     display: none;
 }
 
-.navbutton{
-    position: absolute; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    right: 0;
-    flex: 1;
-    margin-right: 4rem;
-    padding-top: 1.2rem;
-    width: inherit;
-    
-}
-.navbutton button{
-    display:block;
-    width: 8rem;
-    height: 1.8rem;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    background-color: #79aee2;
-    color: white;
-}
+
 p > a{
     cursor: pointer;
     color: blue;

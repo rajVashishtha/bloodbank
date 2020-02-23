@@ -43,9 +43,10 @@
  
     <script src="{% static 'adminpanel/js/main.js' %}"></script>
     <script src="{% static 'adminpanel/js/home.js' %}"></script>
+
 </head>
 <body>
-<div class="navbar">
+<div class="nav_bar">
     <div class="navimage">
         <img src="{% static 'adminpanel/img/drop.png' %}" alt="drop">
     </div>
@@ -84,7 +85,7 @@
                     </div>
                     <div class="wrap-contact2-form-btn">
                         <div class="contact2-form-bgbtn"></div>
-                        <button class="contact2-form-btn">
+                        <button class="contact2-form-btn reset">
                             Reset
                         </button>
                     </div>
@@ -96,45 +97,45 @@
     </div>
     <div class="signup">
         <div class="wrap-contact2" style="padding-top: 1rem;">
-            <form class="contact2-form validate-form">
+            <form class="contact2-form validate-form" action="register" method="POST" id="registerform">
                 <span class="contact2-form-title">
-                    Contact Us
+                    Register
                 </span>
 
                 <div class="wrap-input2 validate-input" data-validate="Name is required">
-                    <input class="input2" type="name" name="name">
+                    <input class="input2" type="name" name="name" required>
                     <span class="focus-input2" data-placeholder="ORGANISATION NAME"></span>
                 </div>
 
-                <div class="wrap-input2 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                    <input class="input2" type="email" name="email">
+                <div class="wrap-input2" data-validate = "Valid email is required: ex@abc.xyz">
+                    <input class="input2" type="email" name="email" required>
                     <span class="focus-input2" data-placeholder="EMAIL"></span>
                 </div>
                 
                 <div class="wrap-input2 validate-input" data-validate = "Password id required">
-                    <input class="input2" type="password" name="password">
+                    <input class="input2" type="password" name="password" required>
                     <span class="focus-input2" data-placeholder="PASSWORD"></span>
                 </div>
                 
                 <div class="wrap-input2 validate-input" data-validate = "Confirm Your Password">
-                    <input class="input2" type="password" name="confirm-password">
+                    <input class="input2" type="password" name="confirm-password" required>
                     <span class="focus-input2" data-placeholder="CONFIRM PASSWORD"></span>
                 </div>
                         <div class="wrap-input2 validate-input" data-validate = "Enter full address here">
-                    <input class="input2" type="password" name="password">
+                    <input class="input2" type="text" name="address" required>
                     <span class="focus-input2" data-placeholder=" FULL ADDRESS"></span>
                 </div>
 
-                <div class="wrap-input2 validate-input" data-validate = "Enter full address here">
-                    <input class="input2" type="number" name="pincode">
+                <div class="wrap-input2 validate-input" data-validate ="Enter your locality pincode">
+                    <input class="input2" type="number" name="pincode" required>
                     <span class="focus-input2" data-placeholder="PINCODE"></span>
                 </div>
 
                 <div class="select" >
-                    <select id="selectState" onchange='city(this)'>
+                    <select id="selectState" onchange="selectcity()" name="state" required>
                         <option selected disabled>Select State</option>
                     </select>
-                    <select id="selectCity" onchange=''>
+                    <select id="selectCity" name="city" required>
                         <option selected disabled>Select City</option>
                     </select>
                 </div>
@@ -143,13 +144,13 @@
                 <div class="container-contact2-form-btn">
                     <div class="wrap-contact2-form-btn">
                         <div class="contact2-form-bgbtn"></div>
-                        <button class="contact2-form-btn">
+                        <button class="contact2-form-btn" id="submitform">
                             Submit
                         </button>
                     </div>
                     <div class="wrap-contact2-form-btn">
                         <div class="contact2-form-bgbtn"></div>
-                        <button class="contact2-form-btn">
+                        <button class="contact2-form-btn reset">
                             Reset
                         </button>
                     </div>
@@ -199,11 +200,10 @@ var arr = ['Andhra Pradesh',
 'Lakshadweep',
 'Puducherry'];
 for(var i=0 ;i<arr.length;i++){
-    var str = "<option>"+arr[i]+"</option>"
+    var str = "<option value='"+arr[i]+"' >"+arr[i]+"</option>"
     $("#selectState").append(str);
 }
-function city(){
-   console.log( $( "#selectState option:selected" ).text())
+function selectcity(){
    var stateName = $( "#selectState option:selected" ).text();
 
     $.ajax({
@@ -219,7 +219,7 @@ function city(){
             else{
             for(var i=0;i<cities.length;i++){
                 var temp = cities[i].City
-                var str = "<option>"+temp+"</option>"
+                var str = "<option value='"+temp+"' >"+temp+"</option>"
                 $("#selectCity").append(str)
             }
             }
@@ -227,21 +227,26 @@ function city(){
     })
 
 }
-function fun(){
-    /*axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
-        params:{
-            address : '22 Main st Boston MA',
-            key : 'AIzaSyAzwIeNa5p1DOVVRPfvZBb_ortNM_Z9lwQ'
-        }
-    })
-    .then(function(response){
-        console.log(response)
-    })
-    .catch(function(error){
-        console.log(error)
-    })*/
-}
+$(".reset").click(function(event){
+    event.preventDefault();
+    $("input").text("");
+    $("input").val("");
+    $("#selectCity").empty();
+    $("#selectCity").append("<option>Select City</option>")
+    $('#selectState option:contains("Select State")').prop('selected', true)
+})
+$("#submitform").click(function(event){
+    var state_selected = $("#selectState option:selected").text();
+    var city_select = $("#selectCity option:selected").text();
+    if(state_selected == "Select State" || city_select == "Select City"){
+        event.preventDefault();
+        alert("Please select  state and city")
+    }
+    else{
+        $("#registerform").submit();
+    }
 
+})
 
 </script>
 <script src="{% static 'adminpanel/css/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
