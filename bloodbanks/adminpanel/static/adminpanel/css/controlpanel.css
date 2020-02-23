@@ -1,0 +1,17 @@
+html,body{
+    padding: 0;
+    margin: 0;
+}
+.navbar{
+    display: flex;
+    background-color: DodgerBlue;
+}
+.navname{
+    margin-left: 2rem;
+    width: 50%;
+}
+.navimage img{
+    margin-left: 2rem;
+    width: 4rem;
+    height: 4rem;
+}

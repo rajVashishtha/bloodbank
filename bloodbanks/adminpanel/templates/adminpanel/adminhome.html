@@ -1,0 +1,259 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BloodBank</title>
+   
+    <link href="{% static 'adminpanel/css/home.css' %}" rel="stylesheet">
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
+    </script>
+    <link rel="stylesheet" type="text/css" href=" {% static 'adminpanel/css/form/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/form/main.css' %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/vendor/animate/animate.css' %}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/vendor/css-hamburgers/hamburgers.min.css' %}">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/vendor/select2/select2.min.css' %}">
+    <!--===============================================================================================-->
+
+    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.13.0/js/mdb.min.js"></script>
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.13.0/css/mdb.min.css" rel="stylesheet">
+
+
+ 
+    <script src="{% static 'adminpanel/js/main.js' %}"></script>
+    <script src="{% static 'adminpanel/js/home.js' %}"></script>
+</head>
+<body>
+<div class="navbar">
+    <div class="navimage">
+        <img src="{% static 'adminpanel/img/drop.png' %}" alt="drop">
+    </div>
+<div class="navname">
+    <h2>Blood Bank</h2>
+</div>
+<div class="navbutton">
+    <button onclick="change()">Register</button>
+</div>
+
+</div>
+<div class="form">
+    <div class="login">
+        <div class="wrap-contact2" style="padding-top: 1rem;"> 
+            <form class="contact2-form validate-form">
+                <span class="contact2-form-title">
+                    Login
+                </span>
+
+                <div class="wrap-input2 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                    <input class="input2" type="email" name="email">
+                    <span class="focus-input2" data-placeholder="EMAIL"></span>
+                </div>
+
+                <div class="wrap-input2 validate-input" data-validate = "Password is required">
+                    <input class="input2" type="password" name="password">
+                    <span class="focus-input2" data-placeholder="PASSWORD"></span>
+                </div>
+
+                <div class="container-contact2-form-btn">
+                    <div class="wrap-contact2-form-btn">
+                        <div class="contact2-form-bgbtn"></div>
+                        <button class="contact2-form-btn">
+                            Submit
+                        </button>
+                    </div>
+                    <div class="wrap-contact2-form-btn">
+                        <div class="contact2-form-bgbtn"></div>
+                        <button class="contact2-form-btn">
+                            Reset
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <p style="text-align:center;">Not Registered ? <a onclick="change()">Register</a></p>  
+    </div>
+    <div class="signup">
+        <div class="wrap-contact2" style="padding-top: 1rem;">
+            <form class="contact2-form validate-form">
+                <span class="contact2-form-title">
+                    Contact Us
+                </span>
+
+                <div class="wrap-input2 validate-input" data-validate="Name is required">
+                    <input class="input2" type="name" name="name">
+                    <span class="focus-input2" data-placeholder="ORGANISATION NAME"></span>
+                </div>
+
+                <div class="wrap-input2 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                    <input class="input2" type="email" name="email">
+                    <span class="focus-input2" data-placeholder="EMAIL"></span>
+                </div>
+                
+                <div class="wrap-input2 validate-input" data-validate = "Password id required">
+                    <input class="input2" type="password" name="password">
+                    <span class="focus-input2" data-placeholder="PASSWORD"></span>
+                </div>
+                
+                <div class="wrap-input2 validate-input" data-validate = "Confirm Your Password">
+                    <input class="input2" type="password" name="confirm-password">
+                    <span class="focus-input2" data-placeholder="CONFIRM PASSWORD"></span>
+                </div>
+                        <div class="wrap-input2 validate-input" data-validate = "Enter full address here">
+                    <input class="input2" type="password" name="password">
+                    <span class="focus-input2" data-placeholder=" FULL ADDRESS"></span>
+                </div>
+
+                <div class="wrap-input2 validate-input" data-validate = "Enter full address here">
+                    <input class="input2" type="number" name="pincode">
+                    <span class="focus-input2" data-placeholder="PINCODE"></span>
+                </div>
+
+                <div class="select" >
+                    <select id="selectState" onchange='city(this)'>
+                        <option selected disabled>Select State</option>
+                    </select>
+                    <select id="selectCity" onchange=''>
+                        <option selected disabled>Select City</option>
+                    </select>
+                </div>
+
+                
+                <div class="container-contact2-form-btn">
+                    <div class="wrap-contact2-form-btn">
+                        <div class="contact2-form-bgbtn"></div>
+                        <button class="contact2-form-btn">
+                            Submit
+                        </button>
+                    </div>
+                    <div class="wrap-contact2-form-btn">
+                        <div class="contact2-form-bgbtn"></div>
+                        <button class="contact2-form-btn">
+                            Reset
+                        </button>
+                    </div>
+                </div>
+                </form>
+        </div>
+        <p style="text-align: center;">Already Registered ? <a onclick="change()">Login</a></p>
+    </div>
+</div>
+
+<!--geocode start-->
+<script>
+var arr = ['Andhra Pradesh',
+'Arunachal Pradesh',
+'Assam',
+'Bihar',
+'Chhattisgarh',
+'Goa',
+'Gujarat',
+'Haryana',
+'Himachal Pradesh',
+'Jammu and Kashmir',
+'Jharkhand',
+'Karnataka',
+'Kerala',
+'Madhya Pradesh',
+'Maharashtra',
+'Manipur',
+'Meghalaya',
+'Mizoram',
+'Nagaland',
+'Odisha',
+'Punjab',
+'Rajasthan',
+'Sikkim',
+'Tamil Nadu',
+'Telangana',
+'Tripura',
+'Uttarakhand',
+'Uttar Pradesh',
+'West Bengal',
+'Andaman and Nicobar Islands',
+'Chandigarh',
+'Dadra and Nagar Haveli',
+'Daman and Diu',
+'Delhi',
+'Lakshadweep',
+'Puducherry'];
+for(var i=0 ;i<arr.length;i++){
+    var str = "<option>"+arr[i]+"</option>"
+    $("#selectState").append(str);
+}
+function city(){
+   console.log( $( "#selectState option:selected" ).text())
+   var stateName = $( "#selectState option:selected" ).text();
+
+    $.ajax({
+        url : 'https://indian-cities-api-nocbegfhqg.now.sh/cities',
+        data : {State: stateName},
+        success : function(cities){
+            $("#selectCity").empty()
+            $("#selectCity").append("<option disabled selected>Select City</option>")
+            if(cities.length == 0){
+               var str =  $("#selectState option:selected").text()
+                $("#selectCity").append("<option>"+str+"</option>")
+            }
+            else{
+            for(var i=0;i<cities.length;i++){
+                var temp = cities[i].City
+                var str = "<option>"+temp+"</option>"
+                $("#selectCity").append(str)
+            }
+            }
+        }
+    })
+
+}
+function fun(){
+    /*axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
+        params:{
+            address : '22 Main st Boston MA',
+            key : 'AIzaSyAzwIeNa5p1DOVVRPfvZBb_ortNM_Z9lwQ'
+        }
+    })
+    .then(function(response){
+        console.log(response)
+    })
+    .catch(function(error){
+        console.log(error)
+    })*/
+}
+
+
+</script>
+<script src="{% static 'adminpanel/css/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src=" {% static 'adminpanel/css/vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'adminpanel/css/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'adminpanel/css/vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'adminpanel/js/main.js' %}"></script>
+
+
+
+</body>
+</html>
