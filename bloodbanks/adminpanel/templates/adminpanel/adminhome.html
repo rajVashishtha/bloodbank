@@ -61,18 +61,19 @@
 <div class="form">
     <div class="login">
         <div class="wrap-contact2" style="padding-top: 1rem;"> 
-            <form class="contact2-form validate-form">
+            <form class="contact2-form validate-form" action="login" method="POST" >
+                {% csrf_token %}
                 <span class="contact2-form-title">
                     Login
                 </span>
 
                 <div class="wrap-input2 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                    <input class="input2" type="email" name="email">
+                    <input class="input2" type="email" name="email" required>
                     <span class="focus-input2" data-placeholder="EMAIL"></span>
                 </div>
 
                 <div class="wrap-input2 validate-input" data-validate = "Password is required">
-                    <input class="input2" type="password" name="password">
+                    <input class="input2" type="password" name="password" required>
                     <span class="focus-input2" data-placeholder="PASSWORD"></span>
                 </div>
 
@@ -98,6 +99,7 @@
     <div class="signup">
         <div class="wrap-contact2" style="padding-top: 1rem;">
             <form class="contact2-form validate-form" action="register" method="POST" id="registerform">
+                {% csrf_token %}
                 <span class="contact2-form-title">
                     Register
                 </span>
@@ -113,12 +115,12 @@
                 </div>
                 
                 <div class="wrap-input2 validate-input" data-validate = "Password id required">
-                    <input class="input2" type="password" name="password" required>
+                    <input class="input2" type="password" name="password" id="pass" required>
                     <span class="focus-input2" data-placeholder="PASSWORD"></span>
                 </div>
                 
                 <div class="wrap-input2 validate-input" data-validate = "Confirm Your Password">
-                    <input class="input2" type="password" name="confirm-password" required>
+                    <input class="input2" type="password" name="confirm-password" id="conpass" required>
                     <span class="focus-input2" data-placeholder="CONFIRM PASSWORD"><p id="mismatch">Mismatch</p></span>
                 </div>
                         <div class="wrap-input2 validate-input" data-validate = "Enter full address here">
@@ -244,12 +246,16 @@ $("#submitform").click(function(event){
         $("#required_msg").css({'display':'block'})
     }
     else{
-      /*  var password = 
-        var confirm-password = 
-        if() */
-
-        $("#required_msg").css({'display':'none'})
+        var password = $("#pass").val();
+        var confirm_password = $("#conpass").val();
+        if(password != confirm_password) {
+            event.preventDefault();
+            $("#mismatch").css({'display':'block'})
+        }
+        else{
+            $("#required_msg").css({'display':'none'})
         $("#registerform").submit();
+        }
     }
 
 })
