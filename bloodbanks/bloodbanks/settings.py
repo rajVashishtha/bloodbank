@@ -31,10 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-<<<<<<< HEAD
     'adminpanel.apps.AdminpanelConfig',
-=======
->>>>>>> f1dc21d6bd0d6c2c43ac72353af5c92015baf208
     'banks.apps.BanksConfig',
     'django.contrib.admin',
     'django.contrib.auth',
