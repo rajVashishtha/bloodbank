@@ -119,7 +119,7 @@
                 
                 <div class="wrap-input2 validate-input" data-validate = "Confirm Your Password">
                     <input class="input2" type="password" name="confirm-password" required>
-                    <span class="focus-input2" data-placeholder="CONFIRM PASSWORD"></span>
+                    <span class="focus-input2" data-placeholder="CONFIRM PASSWORD"><p id="mismatch">Mismatch</p></span>
                 </div>
                         <div class="wrap-input2 validate-input" data-validate = "Enter full address here">
                     <input class="input2" type="text" name="address" required>
@@ -139,6 +139,7 @@
                         <option selected disabled>Select City</option>
                     </select>
                 </div>
+                <p id="required_msg">*State and City is required*</p>
 
                 
                 <div class="container-contact2-form-btn">
@@ -240,9 +241,14 @@ $("#submitform").click(function(event){
     var city_select = $("#selectCity option:selected").text();
     if(state_selected == "Select State" || city_select == "Select City"){
         event.preventDefault();
-        alert("Please select  state and city")
+        $("#required_msg").css({'display':'block'})
     }
     else{
+      /*  var password = 
+        var confirm-password = 
+        if() */
+
+        $("#required_msg").css({'display':'none'})
         $("#registerform").submit();
     }
 

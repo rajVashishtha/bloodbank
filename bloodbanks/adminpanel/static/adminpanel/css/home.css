@@ -137,3 +137,15 @@ p > a{
 option{
     cursor: pointer;
 }
+#required_msg{
+    margin-top: 1rem;
+    display: none;
+    font-size: small;
+    color: red;
+    text-align: center;
+}
+#mismatch{
+    font-size: small;
+    display: none;
+    color: red;
+}
