@@ -20,10 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('banks/', include('banks.urls')),
     path('', include('adminpanel.urls')),
-<<<<<<< HEAD
-    path('home', include('adminpanel.urls')),
-=======
     path('api-auth/', include('rest_framework.urls')),
     # path('register', include('adminpanel.urls')),
->>>>>>> 396f66fc281a4b45a232c4a53c17cdee4a4a0f69
 ]
