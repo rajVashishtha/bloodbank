@@ -95,13 +95,8 @@ html,body{
 
 p > a{
     cursor: pointer;
-    color: blue;
+    color: blue !important;
 }
-#map {
-    height: 40rem;
-    width: 37rem;
-    margin: auto;
-  }
   input[type=number]::-webkit-inner-spin-button, 
   input[type=number]::-webkit-outer-spin-button { 
     -webkit-appearance: none; 

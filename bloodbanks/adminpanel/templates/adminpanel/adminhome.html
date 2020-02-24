@@ -29,6 +29,9 @@
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.13.0/js/mdb.min.js"></script>
 
+<!--for hashing-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha512/0.8.0/sha512.js"></script>
+
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -117,10 +120,11 @@
                 <div class="wrap-input2 validate-input" data-validate = "Password id required">
                     <input class="input2" type="password" name="password" id="pass" required>
                     <span class="focus-input2" data-placeholder="PASSWORD"></span>
+                    <button id="see_pass" style="float: right; border: none; display: none;"><i class="fas fa-eye"></i></button>
                 </div>
                 
                 <div class="wrap-input2 validate-input" data-validate = "Confirm Your Password">
-                    <input class="input2" type="password" name="confirm-password" id="conpass" required>
+                    <input class="input2" type="password" name="password" id="conpass" required>
                     <span class="focus-input2" data-placeholder="CONFIRM PASSWORD"><p id="mismatch">Mismatch</p></span>
                 </div>
                         <div class="wrap-input2 validate-input" data-validate = "Enter full address here">
@@ -239,7 +243,7 @@ $(".reset").click(function(event){
     $('#selectState option:contains("Select State")').prop('selected', true)
 })
 $("#submitform").click(function(event){
-    var state_selected = $("#selectState option:selected").text();
+      var state_selected = $("#selectState option:selected").text();
     var city_select = $("#selectCity option:selected").text();
     if(state_selected == "Select State" || city_select == "Select City"){
         event.preventDefault();
@@ -253,11 +257,32 @@ $("#submitform").click(function(event){
             $("#mismatch").css({'display':'block'})
         }
         else{
+            var hash = $("#pass").val();
+            $("#pass").val() = sha512(hash);
             $("#required_msg").css({'display':'none'})
         $("#registerform").submit();
         }
     }
 
+})
+
+$("#pass , #conpass").keyup(function(){
+    if($("#pass").val() != "" || $("#conpass").val() != ""){
+    $("#see_pass").css({'display':'inline'});
+    }
+    else{
+        $("#mismatch").css({'display':'none'});
+        $("#see_pass").css({'display':'none'});
+    }
+})
+$("#see_pass").click(function(event){
+    event.preventDefault();
+    if($("#pass , #conpass").attr("type") == "password"){
+    $("#pass , #conpass").attr("type","text")
+    }
+    else{
+        $("#pass , #conpass").attr("type","password") 
+    }
 })
 
 </script>

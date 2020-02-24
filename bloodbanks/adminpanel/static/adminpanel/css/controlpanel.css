@@ -2,16 +2,78 @@ html,body{
     padding: 0;
     margin: 0;
 }
-.navbar{
+.nav_bar{
     display: flex;
-    background-color: DodgerBlue;
+    justify-content: space-around;
+    background-image: linear-gradient(to right,#F89393,#E0D8D8);
+}
+.navimage{
+    display: flex;
+    justify-content: flex-start;
+    width: 33%;
 }
 .navname{
-    margin-left: 2rem;
-    width: 50%;
+    display: flex;
+    justify-content: center;
+    padding-top: .3rem;
+    width: 33%;
 }
+.navname h2{
+    font-weight: bold;
+}
+.navbutton{
+    display: flex;
+    justify-content: flex-end;
+    width: 33%;
+    padding-top: .8rem;
+}
+
 .navimage img{
-    margin-left: 2rem;
-    width: 4rem;
-    height: 4rem;
+  width: 4rem;
+  height: 4rem;
+  margin-left: 2rem;
 }
+
+.navbutton button{
+  margin-right: 2rem;
+  background-color: #F38A8A;
+  color: white;
+  width: 6rem;
+  height: 2rem;
+  font-size: 1.2rem;
+  border-radius: 1rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .myTable {
+    max-width: 1000px;
+    margin: 50px auto;
+  }
+  
+  .myUpdateTable {
+    width: 1000px;
+    margin: 50px auto;
+    /* margin: auto; */
+  }
+  
+  .myinput {
+    max-width: 75px;
+  }
+  td {
+    text-align: center;
+  }
+  
+  .myinput {
+    border: none;
+    outline: none;
+    background-color: #757575;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+  }
+  
