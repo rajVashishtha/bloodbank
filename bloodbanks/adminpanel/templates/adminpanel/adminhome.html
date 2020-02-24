@@ -203,7 +203,7 @@ var arr = ['Andhra Pradesh',
 'Lakshadweep',
 'Puducherry'];
 for(var i=0 ;i<arr.length;i++){
-    var str = "<option value='"+arr[i]+"' >"+arr[i]+"</option>"
+    var str = "<option value='"+(i+3)+"' >"+arr[i]+"</option>"
     $("#selectState").append(str);
 }
 function selectcity(){

@@ -13,10 +13,11 @@ class BloodBank(models.Model):
     name = models.CharField(max_length=200)
     email = models.EmailField()
     password = models.CharField(max_length=400)
-    city = models.CharField(max_length=64)
-    state = models.ForeignKey(State, on_delete=models.CASCADE, related_name="banks")
+    address = models.TextField(max_length=400)
     pincode = models.IntegerField()
-    
+    state = models.ForeignKey(State, on_delete=models.CASCADE, related_name="banks")
+    city = models.CharField(max_length=64)
+     
     def __str__(self):
         return f"{self.name} in {self.city}, {self.state}"
 
