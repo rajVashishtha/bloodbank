@@ -11,10 +11,13 @@ class State(models.Model):
 
 class BloodBank(models.Model):
     name = models.CharField(max_length=200)
-    city = models.CharField(max_length=64)
-    state = models.ForeignKey(State, on_delete=models.CASCADE, related_name="banks")
+    email = models.EmailField()
+    password = models.CharField(max_length=400)
+    address = models.TextField(max_length=400)
     pincode = models.IntegerField()
-    
+    state = models.ForeignKey(State, on_delete=models.CASCADE, related_name="banks")
+    city = models.CharField(max_length=64)
+     
     def __str__(self):
         return f"{self.name} in {self.city}, {self.state}"
 
@@ -42,6 +45,7 @@ class BloodBag(models.Model):
     blood_group = models.ForeignKey(BloodGroup, on_delete=models.CASCADE, related_name="available")
     size_in_ml = models.ForeignKey(Size, on_delete=models.CASCADE, related_name="available")
     quantity = models.IntegerField()
+    total_ml = models.IntegerField()
 
     def __str__(self):
         return f"{self.blood_bank} has {self.quantity} bags ({self.size_in_ml}) of {self.blood_group} group"
