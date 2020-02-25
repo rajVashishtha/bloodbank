@@ -13,19 +13,8 @@ from banks.models import  BloodBank, BloodBag
 def index(request):
      return render(request, 'adminpanel/adminhome.html')
 
-<<<<<<< HEAD
 def home(request):
-     return render(request , "adminpanel/controlpanel.html")
-
-def register(request):
-    name = request.POST['name']
-    email = request.POST['email']
-    password = request.POST['password']
-    address = request.POST['address']
-    pincode = request.POST['pincode']
-    state = request.POST['state']
-    city = request.POST['']
-=======
+    return render(request,"adminpanel/controlpanel.html")
 
 
 class CreateView(APIView):
@@ -34,11 +23,11 @@ class CreateView(APIView):
         # request.data['password'] = hash(li)
         # li.append(hash(password))
         print("Request data: ", request.data)
-        return HttpResponse(request.data)
         serializer = BloodBankSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
+            #return Response(serializer.data)
+            return HttpResponseRedirect(reverse('admin-home'))
         return Response(serializer.errors)    
 
 
@@ -58,4 +47,3 @@ class BloodBankView(APIView):
 
 
 
->>>>>>> 396f66fc281a4b45a232c4a53c17cdee4a4a0f69

@@ -13,6 +13,7 @@
     </script>
     <link rel="stylesheet" type="text/css" href=" {% static 'adminpanel/css/form/util.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/form/main.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
 
     <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/vendor/bootstrap/css/bootstrap.min.css' %}">
     <!--===============================================================================================-->
@@ -128,7 +129,7 @@
                     <span class="focus-input2" data-placeholder="CONFIRM PASSWORD"><p id="mismatch">Mismatch</p></span>
                 </div>
                         <div class="wrap-input2 validate-input" data-validate = "Enter full address here">
-                    <input class="input2" type="text" name="address" required>
+                    <input class="input2" type="text" name="address" id="address" required>
                     <span class="focus-input2" data-placeholder=" FULL ADDRESS"></span>
                 </div>
 
@@ -146,6 +147,8 @@
                     </select>
                 </div>
                 <p id="required_msg">*State and City is required*</p>
+                <input style="display: none;" name="lat" type="text" id="lat">
+                <input style="display: none;" name="lng" type="text" id="lng">
 
                 
                 <div class="container-contact2-form-btn">
@@ -243,26 +246,50 @@ $(".reset").click(function(event){
     $('#selectState option:contains("Select State")').prop('selected', true)
 })
 $("#submitform").click(function(event){
-      var state_selected = $("#selectState option:selected").text();
-    var city_select = $("#selectCity option:selected").text();
-    if(state_selected == "Select State" || city_select == "Select City"){
-        event.preventDefault();
-        $("#required_msg").css({'display':'block'})
-    }
-    else{
-        var password = $("#pass").val();
-        var confirm_password = $("#conpass").val();
-        if(password != confirm_password) {
-            event.preventDefault();
-            $("#mismatch").css({'display':'block'})
-        }
-        else{
-            var hash = $("#pass").val();
-            $("#pass").val() = sha512(hash);
-            $("#required_msg").css({'display':'none'})
-        $("#registerform").submit();
-        }
-    }
+            var state_selected = $("#selectState option:selected").text();
+            var city_select = $("#selectCity option:selected").text();
+            if(state_selected == "Select State" || city_select == "Select City"){
+                event.preventDefault();
+                $("#required_msg").css({'display':'block'})
+            }
+            else{
+                var password = $("#pass").val();
+                var confirm_password = $("#conpass").val();
+                if(password != confirm_password) {
+                    event.preventDefault();
+                    $("#mismatch").css({'display':'block'})
+                }
+                else{
+                    var hash = $("#pass").val();
+                    $("#pass").val(sha512(hash))
+                    $("#required_msg").css({'display':'none'})
+                    var location = $("#address").val();
+                    axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
+                        params:{
+                            address : location,
+                            key: 'AIzaSyBVHC0B-6mFNuMk0lBnOmc-JIJojPxKc2Q'
+                        }
+                    })
+                    .then(function(response){
+                    var lat = response.data.results[0].geometry.location.lat;
+                    var lng = response.data.results[0].geometry.location.lng;
+                    $("#lat").val(lat);
+                    $("#lng").val(lng);
+                    })
+                    .catch(function(error){
+                        if($("#address").val() != ""){
+                        event.preventDefault();
+                        alert("invalid address")
+                        $("#address").val("")
+                        console.log(error)
+                        }
+                        else{
+                            console.log("Enter Address in Address Field ")
+                        }
+                    })
+            $("#registerform").submit();
+                }
+            }
 
 })
 
