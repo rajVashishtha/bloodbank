@@ -17,6 +17,9 @@ class BloodBank(models.Model):
     pincode = models.IntegerField()
     state = models.ForeignKey(State, on_delete=models.CASCADE, related_name="banks")
     city = models.CharField(max_length=64)
+    latitude = models.CharField(max_length=20)
+    longitude = models.CharField(max_length=20)
+    
      
     def __str__(self):
         return f"{self.name} in {self.city}, {self.state}"
