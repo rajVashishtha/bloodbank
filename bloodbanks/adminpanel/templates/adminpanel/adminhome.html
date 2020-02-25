@@ -32,6 +32,9 @@
 <!--for hashing-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha512/0.8.0/sha512.js"></script>
 
+<!-- .for axios -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
+
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -64,37 +67,18 @@
 <div class="form">
     <div class="login">
         <div class="wrap-contact2" style="padding-top: 1rem;"> 
-            <form class="contact2-form validate-form" action="login" method="POST" >
+            <form action="login" method="POST" >
                 {% csrf_token %}
                 <span class="contact2-form-title">
                     Login
                 </span>
 
-                <div class="wrap-input2 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                    <input class="input2" type="email" name="email" required>
-                    <span class="focus-input2" data-placeholder="EMAIL"></span>
-                </div>
+                <label>Email</label>
+                <input type="email" required>
+                <label>Password</label>
+                <input type="password" required>
 
-                <div class="wrap-input2 validate-input" data-validate = "Password is required">
-                    <input class="input2" type="password" name="password" required>
-                    <span class="focus-input2" data-placeholder="PASSWORD"></span>
-                </div>
-
-                <div class="container-contact2-form-btn">
-                    <div class="wrap-contact2-form-btn">
-                        <div class="contact2-form-bgbtn"></div>
-                        <button class="contact2-form-btn">
-                            Submit
-                        </button>
-                    </div>
-                    <div class="wrap-contact2-form-btn">
-                        <div class="contact2-form-bgbtn"></div>
-                        <button class="contact2-form-btn reset">
-                            Reset
-                        </button>
-                    </div>
-                </div>
-
+                <button type="submit">Submit</button>
             </form>
         </div>
         <p style="text-align:center;">Not Registered ? <a onclick="change()">Register</a></p>  
@@ -128,7 +112,7 @@
                     <span class="focus-input2" data-placeholder="CONFIRM PASSWORD"><p id="mismatch">Mismatch</p></span>
                 </div>
                         <div class="wrap-input2 validate-input" data-validate = "Enter full address here">
-                    <input class="input2" type="text" name="address" required>
+                    <input class="input2" type="text" name="address" id="address" required>
                     <span class="focus-input2" data-placeholder=" FULL ADDRESS"></span>
                 </div>
 
@@ -146,6 +130,11 @@
                     </select>
                 </div>
                 <p id="required_msg">*State and City is required*</p>
+
+                <div style="display: none;">
+                 <input type="text"  id="lat" value="0" name="latitude" >
+                 <input type="text"  id="lng" value="0" name="longitude" >
+                </div>
 
                 
                 <div class="container-contact2-form-btn">
@@ -257,9 +246,23 @@ $("#submitform").click(function(event){
             $("#mismatch").css({'display':'block'})
         }
         else{
-            var hash = $("#pass").val();
-            $("#pass").val() = sha512(hash);
             $("#required_msg").css({'display':'none'})
+            var location = $("#address").val()
+            axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
+                params:{
+                    address : location,
+                    key : 'AIzaSyBVHC0B-6mFNuMk0lBnOmc-JIJojPxKc2Q'
+                }
+            })
+            .then(function(response){
+                var lati = response.data.results[0].geometry.location.lat;
+                var lngi = response.data.results[0].geometry.location.lng;
+                $("#lat").val(lati.toString())
+                $("#lng").val(lngi.toString())
+            })
+            .catch(function(error){
+                console.log(error+"   address not found")
+            })
         $("#registerform").submit();
         }
     }

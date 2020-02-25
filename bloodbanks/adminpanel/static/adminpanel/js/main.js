@@ -39,10 +39,10 @@
             check=false;
         }
 
-        if($(message).val().trim() == ''){
-            showValidate(message);
-            check=false;
-        }
+        // if($(message).val().trim() == ''){
+        //     showValidate(message);
+        //     check=false;
+        // }
 
         return check;
     });
