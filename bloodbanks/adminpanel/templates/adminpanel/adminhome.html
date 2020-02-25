@@ -11,43 +11,9 @@
     integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
     crossorigin="anonymous"></script>
     </script>
-    <link rel="stylesheet" type="text/css" href=" {% static 'adminpanel/css/form/util.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/form/main.css' %}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/vendor/bootstrap/css/bootstrap.min.css' %}">
-    <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/vendor/animate/animate.css' %}">
-    <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/vendor/css-hamburgers/hamburgers.min.css' %}">
-    <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/css/vendor/select2/select2.min.css' %}">
-    <!--===============================================================================================-->
-
-    <link rel="stylesheet" type="text/css" href="{% static 'adminpanel/font-awesome-4.7.0/css/font-awesome.min.css' %}">
-
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.13.0/js/mdb.min.js"></script>
-
-<!--for hashing-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha512/0.8.0/sha512.js"></script>
-
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <!-- Google Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.13.0/css/mdb.min.css" rel="stylesheet">
-
-
- 
-    <script src="{% static 'adminpanel/js/main.js' %}"></script>
+<!-- .for axios -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
     <script src="{% static 'adminpanel/js/home.js' %}"></script>
-
 </head>
 <body>
 <div class="nav_bar">
@@ -58,115 +24,56 @@
     <h2>Blood Bank</h2>
 </div>
 <div class="navbutton">
-    <button onclick="change()">Register</button>
+    <button onclick="change()" class="button" style="margin-right: 2rem;">Register</button>
 </div>
 
 </div>
 <div class="form">
     <div class="login">
-        <div class="wrap-contact2" style="padding-top: 1rem;"> 
-            <form class="contact2-form validate-form" action="login" method="POST" >
-                {% csrf_token %}
-                <span class="contact2-form-title">
-                    Login
-                </span>
-
-                <div class="wrap-input2 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                    <input class="input2" type="email" name="email" required>
-                    <span class="focus-input2" data-placeholder="EMAIL"></span>
-                </div>
-
-                <div class="wrap-input2 validate-input" data-validate = "Password is required">
-                    <input class="input2" type="password" name="password" required>
-                    <span class="focus-input2" data-placeholder="PASSWORD"></span>
-                </div>
-
-                <div class="container-contact2-form-btn">
-                    <div class="wrap-contact2-form-btn">
-                        <div class="contact2-form-bgbtn"></div>
-                        <button class="contact2-form-btn">
-                            Submit
-                        </button>
-                    </div>
-                    <div class="wrap-contact2-form-btn">
-                        <div class="contact2-form-bgbtn"></div>
-                        <button class="contact2-form-btn reset">
-                            Reset
-                        </button>
-                    </div>
-                </div>
-
-            </form>
-        </div>
+        <form action="login" method="POST">
+            {% csrf_token %}
+       <input type="email" name="email" class="input" placeholder="EMAIL" required><br>
+       <input type="password" name="password" class="input" placeholder="PASSWORD" required>
+       <div class="button_div">
+        <button type="submit" id="submit_login" class="button">Submit</button>
+        <button type="reset" class="button">Reset</button>
+      </div>
+       </form>
         <p style="text-align:center;">Not Registered ? <a onclick="change()">Register</a></p>  
     </div>
     <div class="signup">
-        <div class="wrap-contact2" style="padding-top: 1rem;">
-            <form class="contact2-form validate-form" action="register/create" method="POST" id="registerform">
-                {% csrf_token %}
-                <span class="contact2-form-title">
-                    Register
-                </span>
+        <form action="register/create" method="POST" id="register">
+        <input type="text" name="name" placeholder="NAME" class="input" required><br>
+        <input  type="email" name="email" placeholder="EMAIL" class="input" required><br>
+        <input type="password" name="password" id="pass" placeholder="PASSWORD" class="input" required><br>
+        <input type="password" name="password" id="conpass" placeholder="CONFIRM PASSWORD" class="input" required><br>
+        <P id="mismatch">Mismatch passwords</P>
+        <input type="address" name="address" id="address" placeholder="FULL ADDRESS" class="input" required><br>
+        <input type="number" name="pincode" placeholder="PINCODE" id="pincode" class="input" required><br>
 
-                <div class="wrap-input2 validate-input" data-validate="Name is required">
-                    <input class="input2" type="name" name="name" required>
-                    <span class="focus-input2" data-placeholder="ORGANISATION NAME"></span>
-                </div>
-
-                <div class="wrap-input2" data-validate = "Valid email is required: ex@abc.xyz">
-                    <input class="input2" type="email" name="email" required>
-                    <span class="focus-input2" data-placeholder="EMAIL"></span>
-                </div>
-                
-                <div class="wrap-input2 validate-input" data-validate = "Password id required">
-                    <input class="input2" type="password" name="password" id="pass" required>
-                    <span class="focus-input2" data-placeholder="PASSWORD"></span>
-                    <button id="see_pass" style="float: right; border: none; display: none;"><i class="fas fa-eye"></i></button>
-                </div>
-                
-                <div class="wrap-input2 validate-input" data-validate = "Confirm Your Password">
-                    <input class="input2" type="password" name="password" id="conpass" required>
-                    <span class="focus-input2" data-placeholder="CONFIRM PASSWORD"><p id="mismatch">Mismatch</p></span>
-                </div>
-                        <div class="wrap-input2 validate-input" data-validate = "Enter full address here">
-                    <input class="input2" type="text" name="address" id="address" required>
-                    <span class="focus-input2" data-placeholder=" FULL ADDRESS"></span>
-                </div>
-
-                <div class="wrap-input2 validate-input" data-validate ="Enter your locality pincode">
-                    <input class="input2" type="number" name="pincode" required>
-                    <span class="focus-input2" data-placeholder="PINCODE"></span>
-                </div>
-
-                <div class="select" >
-                    <select id="selectState" onchange="selectcity()" name="state" required>
-                        <option selected disabled>Select State</option>
-                    </select>
-                    <select id="selectCity" name="city" required>
-                        <option selected disabled>Select City</option>
-                    </select>
-                </div>
-                <p id="required_msg">*State and City is required*</p>
-                <input style="display: none;" name="lat" type="text" id="lat">
-                <input style="display: none;" name="lng" type="text" id="lng">
-
-                
-                <div class="container-contact2-form-btn">
-                    <div class="wrap-contact2-form-btn">
-                        <div class="contact2-form-bgbtn"></div>
-                        <button class="contact2-form-btn" id="submitform">
-                            Submit
-                        </button>
-                    </div>
-                    <div class="wrap-contact2-form-btn">
-                        <div class="contact2-form-bgbtn"></div>
-                        <button class="contact2-form-btn reset">
-                            Reset
-                        </button>
-                    </div>
-                </div>
-                </form>
+        <div class="select_div">
+        <select id="selectState" onchange="selectcity()" name="state" required>
+            <option disabled selected>Select State</option> 
+        </select><br>
+        <select id="selectCity" name="city" style="margin-top: 1.4rem;" required>
+            <option disabled selected>Select City</option>
+        </select>
         </div>
+        <p id="required_msg">State and City Required</p>
+
+        <div style="display: none;">
+            <input type="text" id="lat" value="" name="latitude">
+            <br>
+            <input type="text" id="lng" value="" name="longitude">
+        </div>
+
+      <div class="button_div">
+        <button type="submit" id="submit" class="button">Submit</button>
+        <button type="reset" class="button">Reset</button>
+      </div>
+
+        </form>
+       
         <p style="text-align: center;">Already Registered ? <a onclick="change()">Login</a></p>
     </div>
 </div>
@@ -215,7 +122,6 @@ for(var i=0 ;i<arr.length;i++){
 }
 function selectcity(){
    var stateName = $( "#selectState option:selected" ).text();
-
     $.ajax({
         url : 'https://indian-cities-api-nocbegfhqg.now.sh/cities',
         data : {State: stateName},
@@ -237,61 +143,79 @@ function selectcity(){
     })
 
 }
-$(".reset").click(function(event){
-    event.preventDefault();
-    $("input").text("");
-    $("input").val("");
-    $("#selectCity").empty();
-    $("#selectCity").append("<option>Select City</option>")
-    $('#selectState option:contains("Select State")').prop('selected', true)
-})
-$("#submitform").click(function(event){
-            var state_selected = $("#selectState option:selected").text();
-            var city_select = $("#selectCity option:selected").text();
-            if(state_selected == "Select State" || city_select == "Select City"){
-                event.preventDefault();
-                $("#required_msg").css({'display':'block'})
-            }
-            else{
-                var password = $("#pass").val();
-                var confirm_password = $("#conpass").val();
-                if(password != confirm_password) {
-                    event.preventDefault();
-                    $("#mismatch").css({'display':'block'})
-                }
-                else{
-                    var hash = $("#pass").val();
-                    $("#pass").val(sha512(hash))
-                    $("#required_msg").css({'display':'none'})
-                    var location = $("#address").val();
-                    axios.get('https://maps.googleapis.com/maps/api/geocode/json',{
-                        params:{
-                            address : location,
-                            key: 'AIzaSyBVHC0B-6mFNuMk0lBnOmc-JIJojPxKc2Q'
-                        }
-                    })
-                    .then(function(response){
-                    var lat = response.data.results[0].geometry.location.lat;
-                    var lng = response.data.results[0].geometry.location.lng;
-                    $("#lat").val(lat);
-                    $("#lng").val(lng);
-                    })
-                    .catch(function(error){
-                        if($("#address").val() != ""){
-                        event.preventDefault();
-                        alert("invalid address")
-                        $("#address").val("")
-                        console.log(error)
-                        }
-                        else{
-                            console.log("Enter Address in Address Field ")
-                        }
-                    })
-            $("#registerform").submit();
-                }
-            }
 
+$("#address").focusout(function(){
+   var location = $("#address").val()
+    get_address_coord(location)
 })
+
+    
+function get_address_coord(location){
+    axios.get("https://maps.googleapis.com/maps/api/geocode/json",{
+                params:{
+                    address : location,
+                    key : 'AIzaSyBVHC0B-6mFNuMk0lBnOmc-JIJojPxKc2Q'
+                }
+            }).then(function(response){
+                var lati = response.data.results[0].geometry.location.lat;
+                var lngi = response.data.results[0].geometry.location.lng;
+                console.log(lati,lngi)
+                $("#lat").val(lati)
+                $("#lng").val(lngi)
+            }).catch(function(error){
+                alert("Catch")
+                console.log(error+" address not found")
+            })
+}
+
+
+$("#register").submit(function(event){
+    if(!(confirmPass() && confirmAdd() && confirmLoc())){
+        event.preventDefault();
+    }
+    else{
+        return true;
+    }
+})
+
+function confirmPass(){
+        var password = $("#pass").val();
+        var confirm_password = $("#conpass").val();
+        if(password != confirm_password) {
+            $("#mismatch").css({'display':'block'})
+            return false;
+        }
+        else{
+            $("#mismatch").css({'display':'none'})
+            return true;
+        }
+}
+
+
+function confirmAdd(){
+    var state_selected = $("#selectState option:selected").text();
+    var city_select = $("#selectCity option:selected").text();
+    if(state_selected == "Select State" || city_select == "Select City"){
+        $("#required_msg").css({'display':'block'})
+        return false;
+    }
+    else{
+        $("#required_msg").css({'display':'none'})
+        return true;
+    }
+}
+
+function confirmLoc(){
+    var lat = $("#lat").val()
+    var lng = $("#lng").val()
+    if(lat == "" && lng == ""){
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+
 
 $("#pass , #conpass").keyup(function(){
     if($("#pass").val() != "" || $("#conpass").val() != ""){
@@ -313,14 +237,8 @@ $("#see_pass").click(function(event){
 })
 
 </script>
-<script src="{% static 'adminpanel/css/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+
 <!--===============================================================================================-->
-	<script src=" {% static 'adminpanel/css/vendor/bootstrap/js/popper.js' %}"></script>
-	<script src="{% static 'adminpanel/css/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
-<!--===============================================================================================-->
-	<script src="{% static 'adminpanel/css/vendor/select2/select2.min.js' %}"></script>
-<!--===============================================================================================-->
-	<script src="{% static 'adminpanel/js/main.js' %}"></script>
 
 
 
