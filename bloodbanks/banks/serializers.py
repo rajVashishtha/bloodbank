@@ -11,7 +11,23 @@ class BloodBankSerializer(serializers.ModelSerializer):
             'address',
             'pincode',
             'state',
-            'city'    
+            'city',
+            'latitude',
+            'longitude'    
         )
+
+
+class DynamicSerializer(BloodBankSerializer):
+    class Meta:
+        model = BloodBank
+        fields = (
+            'name',
+            'address',
+            'pincode',
+            'state',
+            'city',
+            'latitude',
+            'longitude' 
+        )        
 
 

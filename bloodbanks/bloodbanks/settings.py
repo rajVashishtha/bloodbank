@@ -31,8 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'adminpanel.apps.AdminpanelConfig',
-    'banks.apps.BanksConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'banks.apps.BanksConfig',
+    'adminpanel.apps.AdminpanelConfig',
 ]
 
 MIDDLEWARE = [
