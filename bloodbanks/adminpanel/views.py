@@ -1,6 +1,6 @@
 # Create your views here.
 import hashlib
-from django.shortcuts import render,redirect
+from django.shortcuts import render
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.urls import reverse
 #from django.contrib.auth.hashers import make_password
@@ -32,7 +32,7 @@ def login(request):
     q_id =  bank.id 
     q_name = bank.name
 
-    
+
    
     if email == q_email:
         if password == q_password:
