@@ -33,16 +33,6 @@ html,body{
   height: 4rem;
   margin-left: 2rem;
 }
-
-.navbutton button{
-  margin-right: 2rem;
-  background-color: #F38A8A;
-  color: white;
-  width: 6rem;
-  height: 2rem;
-  font-size: 1.2rem;
-  border-radius: 1rem;
-}
 .form{
     display: flex;
     padding-top: 2rem;
@@ -54,44 +44,41 @@ html,body{
     padding-bottom: 1rem;
     margin: auto;
     border: 1px solid #C6C5C7;
-    width: auto;
+    width: 37rem;
 }
  .input{
     margin: auto;
-    width: 15rem;
+    width: 20rem;
     height: 1.8rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
     padding-left: 2px;
     display: block;
-     margin-top: 2rem;
+    margin-top: 1.8rem;
+    border: none;
+    border-bottom: 1px solid #a09e9e;
      
 }
 .input:focus{
     outline: none;
-    border: 1px solid #C8C1BE;
-    background-color: #E0DBD9;
-    box-shadow: .25rem .25rem .25rem .1rem #C8C1BE;
+    border-bottom: 1px solid #F38A8A;
+    background-color: #FDEAE5;
 }
- .buttons{
-    width: 15rem;
+ 
+.select_div{
     margin: auto;
-    margin-top: 2rem;
-}
-.buttons button{
-    width: 48%;
-    height: 2rem;
-    color: rgb(243, 240, 235);
-    background-color : #C292E2;
-    border: none;
-    cursor: pointer;
+    width: 20rem;
 }
 .signup{
     margin: auto;
     padding-bottom: 1rem;
     border: 1px solid #C6C5C7;
     display: none;
+    width: 30rem;
 }
-
+p{
+    margin: auto;
+    text-align: center;
+}
 
 p > a{
     cursor: pointer;
@@ -143,4 +130,32 @@ option{
     font-size: small;
     display: none;
     color: red;
+}
+.button_div{
+   display: flex;
+   justify-content: space-around;
+   margin: auto;
+   margin-top: 2rem;
+   padding-bottom: 1.2rem;
+   width: 80%;
+}
+.button_div button{
+    display: block;
+    float: right;
+    height: 2rem;
+    width: 5rem;
+    color: wheat;
+    background-color: #F38A8A;
+}
+.button_div:first-child{
+    float: left;
+}
+.button{
+    cursor: pointer;
+    background-color: #F38A8A !important;
+    color: white !important;
+    width: 6rem;
+    height: 2rem;
+    font-size: 1.2rem;
+    border-radius: 1rem;
 }

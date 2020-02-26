@@ -1,6 +1,6 @@
 # Create your views here.
 import hashlib
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.urls import reverse
 #from django.contrib.auth.hashers import make_password
@@ -14,6 +14,39 @@ from banks.models import  BloodBank, BloodBag
 def index(request):
      return render(request, 'adminpanel/adminhome.html')
 
+def home(request):
+    return render(request,'adminpanel/controlpanel.html')
+
+def login(request):
+    email = request.POST['email']
+    password = request.POST['password']
+
+    try:
+        bank = BloodBank.objects.get(email=email,password=password)
+    except Exception as e:
+        print(e)
+        return HttpResponseRedirect(reverse('admin-index'))
+
+    q_email = bank.email 
+    q_password = bank.password 
+    q_id =  bank.id 
+    q_name = bank.name
+   
+    if email == q_email:
+        if password == q_password:
+            request.session['admin_id'] = q_id
+            request.session['admin_name'] = q_name
+            
+            return HttpResponseRedirect(reverse('admin-home'))
+    else:
+        return HttpResponseRedirect(reverse('admin-index'))
+   # return HttpResponse(query)
+
+
+def logout(request):
+    request.session.delete()
+    return HttpResponseRedirect(reverse('admin-index'))
+
 
 
 class CreateView(APIView):
@@ -23,7 +56,8 @@ class CreateView(APIView):
         if serializer.is_valid():
             serializer.validated_data['password'] = hashlib.sha512(password.encode()).hexdigest()
             serializer.save()
-            return Response(serializer.data)
+            #return Response(serializer.data)
+            return HttpResponseRedirect(reverse('admin-home'))
         return Response(serializer.errors)    
 
 
