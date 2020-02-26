@@ -11,6 +11,8 @@
     integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
     crossorigin="anonymous"></script>
     </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.js"></script>
 <!-- .for axios -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
     <script src="{% static 'adminpanel/js/home.js' %}"></script>
@@ -29,11 +31,17 @@
 
 </div>
 <div class="form">
+    <div class="design">
+        <h2>Login</h2>
+    </div>
     <div class="login">
         <form action="login" method="POST">
             {% csrf_token %}
        <input type="email" name="email" class="input" placeholder="EMAIL" required><br>
-       <input type="password" name="password" class="input" placeholder="PASSWORD" required>
+       <div class="see_pass">
+        <input type="password" name="password" id="login_pass" class="input" placeholder="PASSWORD" style="display: inline;" required>
+       <button class="eye_btn" id="eye_btn-2"><i class="fas fa-eye eye"  ></i></button>
+        </div>
        <div class="button_div">
         <button type="submit" id="submit_login" class="button">Submit</button>
         <button type="reset" class="button">Reset</button>
@@ -43,10 +51,18 @@
     </div>
     <div class="signup">
         <form action="register/create" method="POST" id="register">
+            {% csrf_token %}
         <input type="text" name="name" placeholder="NAME" class="input" required><br>
         <input  type="email" name="email" placeholder="EMAIL" class="input" required><br>
-        <input type="password" name="password" id="pass" placeholder="PASSWORD" class="input" required><br>
-        <input type="password" name="password" id="conpass" placeholder="CONFIRM PASSWORD" class="input" required><br>
+        <!-- <input type="password" name="password" id="pass" placeholder="PASSWORD" class="input" required><br> -->
+        <div class="see_pass">
+            <input type="password" name="password" id="pass" class="input" placeholder="PASSWORD" style="display: inline;" required>
+           <button class="eye_btn" id="eye_btn"><i class="fas fa-eye eye" ></i></button>
+            </div>
+        <!-- <input type="password" name="password" id="conpass" placeholder="CONFIRM PASSWORD" class="input" required><br> -->
+        <div class="see_pass">
+            <input type="password" class="input" id="conpass" placeholder="CONFIRM PASSWORD" style="display: inline;" required>
+            </div>
         <P id="mismatch">Mismatch passwords</P>
         <input type="address" name="address" id="address" placeholder="FULL ADDRESS" class="input" required><br>
         <input type="number" name="pincode" placeholder="PINCODE" id="pincode" class="input" required><br>
@@ -76,6 +92,9 @@
        
         <p style="text-align: center;">Already Registered ? <a onclick="change()">Login</a></p>
     </div>
+</div>
+<div style="height: 1.3rem; width: 100%;">
+
 </div>
 
 <!--geocode start-->
@@ -215,25 +234,44 @@ function confirmLoc(){
         return true;
     }
 }
-
-
 $("#pass , #conpass").keyup(function(){
     if($("#pass").val() != "" || $("#conpass").val() != ""){
-    $("#see_pass").css({'display':'inline'});
+        $("#eye_btn").css({'display':'inline-block'})
     }
     else{
-        $("#mismatch").css({'display':'none'});
-        $("#see_pass").css({'display':'none'});
+        $("#eye_btn").css({'display':'none'})
     }
 })
-$("#see_pass").click(function(event){
+
+$("#eye_btn").click(function(event){
     event.preventDefault();
     if($("#pass , #conpass").attr("type") == "password"){
     $("#pass , #conpass").attr("type","text")
+    $("#pass,#conpass").css({'border':'none'})
     }
     else{
         $("#pass , #conpass").attr("type","password") 
     }
+})
+
+$("#login_pass").keyup(function(){
+    if($("#login_pass").val() != "" ){
+        $("#eye_btn-2").css({'display':'inline-block'})
+    }
+    else{
+        $("#eye_btn-2").css({'display':'none'})
+    }
+})
+$("#eye_btn-2").click(function(event){
+    event.preventDefault();
+    if($("#login_pass").attr("type") == "password"){
+    $("#login_pass").attr("type","text")
+    $("#login_pass").css({'border':'none'})
+    }
+    else{
+        $("#login_pass").attr("type","password") 
+    }
+
 })
 
 </script>

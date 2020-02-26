@@ -39,6 +39,16 @@ html,body{
     flex-direction: column;
     margin: auto;
 }
+.design{
+    width:37.2rem ;
+    height: 3.5rem;
+    margin: auto;
+    border-top-left-radius: 1.2rem;
+    border-top-right-radius: 1.2rem;
+    background-color:#F38A8A ;
+    text-align: center;
+
+}
 .login{
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -60,8 +70,47 @@ html,body{
 }
 .input:focus{
     outline: none;
-    border-bottom: 1px solid #F38A8A;
+    border-bottom: 2px solid #F38A8A;
     background-color: #FDEAE5;
+}
+input[type='password']{
+    margin: auto;
+    width: 20rem;
+    height: 1.8rem;
+    font-size: 1rem;
+    padding-left: 2px;
+    display: block;
+    margin-top: 2rem;
+    border: none;
+    border-bottom: none;
+}
+input[type='password']:focus{
+    border-bottom: 0px solid #F38A8A;
+}
+.eye{
+    background-color: #FDEAE5;
+    padding-top: .85rem;
+    cursor: pointer;
+}
+.eye_btn{
+    display: none;
+    background-color: #FDEAE5;
+    outline: none;
+    border: none;
+    padding: none;
+    margin: none;
+}
+.see_pass{
+    display: flex;
+    margin: auto;
+    align-items: flex-end;
+    justify-content: start;
+    border-bottom:1px solid #a09e9e;;
+    width: 20rem;
+}
+
+.see_pass:focus-within{
+    border-bottom: 2px solid #F38A8A;
 }
  
 .select_div{
@@ -73,7 +122,7 @@ html,body{
     padding-bottom: 1rem;
     border: 1px solid #C6C5C7;
     display: none;
-    width: 30rem;
+    width: 37rem;
 }
 p{
     margin: auto;
@@ -154,8 +203,13 @@ option{
     cursor: pointer;
     background-color: #F38A8A !important;
     color: white !important;
-    width: 6rem;
+    width: 8rem !important;
     height: 2rem;
     font-size: 1.2rem;
     border-radius: 1rem;
+}
+button:active,button:focus{
+    outline: none;
+    /* border: none;
+    box-shadow: none; */
 }
