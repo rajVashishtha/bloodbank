@@ -48,11 +48,19 @@ class BloodBag(models.Model):
     blood_group = models.ForeignKey(BloodGroup, on_delete=models.CASCADE, related_name="available")
     size_in_ml = models.ForeignKey(Size, on_delete=models.CASCADE, related_name="available")
     quantity = models.IntegerField()
-    total_ml = models.IntegerField()
+    # total_ml = models.IntegerField()
 
     def __str__(self):
         return f"{self.blood_bank} has {self.quantity} bags ({self.size_in_ml}) of {self.blood_group} group"
 
+
+class TotalBlood(models.Model):
+    blood_bank = models.ForeignKey(BloodBank, on_delete=models.CASCADE, related_name='total_blood')
+    blood_group = models.ForeignKey(BloodGroup, on_delete=models.CASCADE, related_name='total_blood')
+    total_ml = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.blood_bank} has {self.total_ml} ml of {self.blood_group}"
 
 
 

@@ -35,7 +35,8 @@
         </div>
 
         <div class="myUpdateTable">
-            <form action="" method="post" id="submit_form">
+            <form action="update" method="post" id="update_form"> 
+                {% csrf_token %}
               <table class="table table-bordered table-dark">
                 <thead>
                   <tr>
@@ -49,50 +50,41 @@
                 </thead>
                 <tbody id="tbody">
                   <!-- start -->
+                  {% with j=0 %}
+                  {% for bags_group in bloodbags %}
                   <tr>
-                     <td scope='col'>1</td>
-                    <td scope='col'>
-                      <input disabled value='1' class='myinput' name=' ' type='number' />
-                    </td>
-                    <td scope='col'>
-                      <input disabled value='1' class='myinput' name=' ' type='number' />
-                    </td>
-                    <td scope='col'>
-                      <input disabled value='1' class='myinput' name=' ' type='number' />
-                    </td>
-                    <td scope='col'>
-                      <input disabled value='1' class='myinput' name=' ' type='number' />
-                    </td>
-                    <td scope='col'>
-                      <input disabled value='1' class='myinput' name=' ' type='number' />
-                    </td>
-                    <td scope='col'>
-                      <input disabled value='1' class='myinput' name=' ' type='number' />
-                    </td>
+                      {% with counter=forloop.counter %}
+                     <td scope='col'>{{ bags_group.0.blood_group }}</td>
+                     
+                     {% for bag in bags_group %}
+                        <td scope='col'>
+                        <input disabled value='{{ bag.quantity }}' class='myinput' name="{{bag.id}}" type='number' />
+                        </td>
+                        
+                     {% endfor %}
+                     {% endwith %}
                   </tr>
-                  <!-- end -->
+                  {% endfor %}
+                  {% endwith %}
                  
                 </tbody>
               </table>
-              <button
+            <button type="submit" class="btn btn-secondary" id="save_btn">SAVE DATA</button>
+
+            </form>
+            <button
               type="button"
               id="btn_update"
               class="btn btn-secondary"
             >
               UPDATE DATA
             </button>
-            <button
-              type="button"
-              id="btn_save"
-              class="btn btn-secondary"
-            >
-              SAVE DATA
-            </button>
-            </form>
             
           </div>
 
 
 
     </body>
+    <script>
+    </script>
 </html>

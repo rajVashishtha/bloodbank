@@ -36,7 +36,7 @@
     </div>
     <div class="login">
         <form action="login" method="POST">
-            {% csrf_token %}
+            {% csrf_token %} 
        <input type="email" name="email" class="input" placeholder="EMAIL" required><br>
        <div class="see_pass">
         <input type="password" name="password" id="login_pass" class="input" placeholder="PASSWORD" style="display: inline;" required>
@@ -76,6 +76,7 @@
         </select>
         </div>
         <p id="required_msg">State and City Required</p>
+        <p id="wrong_address">Wrong Address</p>
 
         <div style="display: none;">
             <input type="text" id="lat" value="" name="latitude">
@@ -170,6 +171,10 @@ $("#address").focusout(function(){
 
     
 function get_address_coord(location){
+    var state_selected = $("#selectState option:selected").text();
+    var city_select = $("#selectCity option:selected").text();
+    var pin = $("#pincode").val();
+    location = location+","+city_select+","+state_selected+","+pin;
     axios.get("https://maps.googleapis.com/maps/api/geocode/json",{
                 params:{
                     address : location,
@@ -228,6 +233,7 @@ function confirmLoc(){
     var lat = $("#lat").val()
     var lng = $("#lng").val()
     if(lat == "" && lng == ""){
+        $("#wrong_address").css({'display':'block'});
         return false;
     }
     else{
