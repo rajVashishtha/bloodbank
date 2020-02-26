@@ -11,15 +11,25 @@ from rest_framework.response import Response
 from banks.serializers import BloodBankSerializer, DynamicSerializer
 from banks.models import  BloodBank, BloodBag
 
+from .logic import init_bloodbags
+
 def index(request):
      return render(request, 'adminpanel/adminhome.html')
 
 def home(request):
-    return render(request,'adminpanel/controlpanel.html')
+    bank = request.session['admin_bank']
+    bags = BloodBag.objects.filter(blood_bank=bank)
+    context = {
+        "bloodbags": bags
+    }
+    return render(request,'adminpanel/controlpanel.html', context)
+
+
 
 def login(request):
     email = request.POST['email']
     password = request.POST['password']
+    password = hashlib.sha512(password.encode()).hexdigest()
 
     try:
         bank = BloodBank.objects.get(email=email,password=password)
@@ -32,33 +42,54 @@ def login(request):
     q_id =  bank.id 
     q_name = bank.name
    
-    if email == q_email:
-        if password == q_password:
-            request.session['admin_id'] = q_id
-            request.session['admin_name'] = q_name
-            
-            return HttpResponseRedirect(reverse('admin-home'))
+    if email == q_email and password == q_password:
+        request.session['admin_bank'] = bank 
+        request.session['admin_id'] = q_id
+        request.session['admin_name'] = q_name
+        return HttpResponseRedirect(reverse('admin-home'))
     else:
         return HttpResponseRedirect(reverse('admin-index'))
    # return HttpResponse(query)
 
 
 def logout(request):
-    request.session.delete()
+    request.session.flush()
+    print("hello")
     return HttpResponseRedirect(reverse('admin-index'))
+
+
+
+# class HomeView(APIView):
+#     def get(self, request, *args, )
+
 
 
 
 class CreateView(APIView):
     def post(self, request, *args, **kwargs):
+        email = request.data['email']
+        if BloodBank.objects.filter(email=email).exists():
+            return HttpResponseRedirect(reverse("admin-index"))
         password = request.data['password']
         serializer = BloodBankSerializer(data=request.data)
+
         if serializer.is_valid():
-            serializer.validated_data['password'] = hashlib.sha512(password.encode()).hexdigest()
+            hash_password = hashlib.sha512(password.encode()).hexdigest()
+            serializer.validated_data['password'] = hash_password
             serializer.save()
-            #return Response(serializer.data)
+            email = request.data['email']
+            password = hash_password
+            bank = BloodBank.objects.get(email=email,password=password)
+            request.session['admin_id'] = bank.id
+            request.session['admin_name'] = bank.name
+            init_bloodbags(bank)
             return HttpResponseRedirect(reverse('admin-home'))
-        return Response(serializer.errors)    
+
+        return Response(serializer.errors)
+
+
+
+
 
 
 class BloodBankView(APIView):
