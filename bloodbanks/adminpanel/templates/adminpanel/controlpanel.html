@@ -35,7 +35,8 @@
         </div>
 
         <div class="myUpdateTable">
-            <form action="" method="post">
+            <form action="update" method="post" id="update_form"> 
+                {% csrf_token %}
               <table class="table table-bordered table-dark">
                 <thead>
                   <tr>
@@ -49,177 +50,35 @@
                 </thead>
                 <tbody id="tbody">
                   <!-- start -->
+                  {% with j=0 %}
+                  {% for bags_group in bloodbags %}
                   <tr>
-                     <td scope='col'>A+</td>
-                    <td scope='col'>
-                      <input disabled value='1' class='myinput' name=' ' type='number' />
-                    </td>
-                    <td scope='col'>
-                      <input disabled value='1' class='myinput' name=' ' type='number' />
-                    </td>
-                    <td scope='col'>
-                      <input disabled value='1' class='myinput' name=' ' type='number' />
-                    </td>
-                    <td scope='col'>
-                      <input disabled value='1' class='myinput' name=' ' type='number' />
-                    </td>
-                    <td scope='col'>
-                      <input disabled value='1' class='myinput' name=' ' type='number' />
-                    </td>
-                    <td scope='col'>
-                      <input disabled value='1' class='myinput' name=' ' type='number' />
-                    </td>
+                      {% with counter=forloop.counter %}
+                     <td scope='col'>{{ bags_group.0.blood_group }}</td>
+                     
+                     {% for bag in bags_group %}
+                        <td scope='col'>
+                        <input disabled value='{{ bag.quantity }}' class='myinput' name="{{bag.id}}" type='number' />
+                        </td>
+                        
+                     {% endfor %}
+                     {% endwith %}
                   </tr>
-                  <!-- end -->
-                 <!-- <tr>
-                    <td scope="col">A-</td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td scope="col">B+</td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td scope="col">B-</td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td scope="col">AB+</td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td scope="col">AB-</td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td scope="col">O+</td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td scope="col">O-</td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                    <td scope="col">
-                      <input disabled value="1" class="myinput" type="number" />
-                    </td>
-                  </tr> -->
+                  {% endfor %}
+                  {% endwith %}
+                 
                 </tbody>
               </table>
+              
+            <button
+              type="button"
+              id="btn_save"
+              class="btn btn-secondary"
+            >
+              SAVE DATA
+            </button>
+            <button type="submit">sub</button>
+
             </form>
             <button
               type="button"
@@ -228,16 +87,12 @@
             >
               UPDATE DATA
             </button>
-            <button
-              type="button"
-              id="btn_save"
-              class="btn btn-secondary"
-            >
-              SAVE DATA
-            </button>
+            
           </div>
 
 
 
     </body>
+    <script>
+    </script>
 </html>

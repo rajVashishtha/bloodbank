@@ -1,4 +1,10 @@
 $(document).ready(function() {
+    // alert("hello")
+    // var names = document.getElementsByTagName("input");
+    // for(var i=0;i<names.length;i++){
+    //     names[i].setAttribute("name","name")
+    // }
+
     // var groups = ["A-","A+","B-","B+","AB-","AB+","O-","O+"];
     // var i=0,j=0;
     //  for(i=0;i<groups.length;i++){
@@ -25,17 +31,13 @@ $(document).ready(function() {
        for(var i=0;i<field.length;i++){
            var temp = field[i].value;
            temp = Number(temp)
-           if(temp <0){
+           if(temp < 0){
                temp = Math.abs(temp)
                field[i].value = temp
            }
        }
-      
        $("#btn_save").css({'display':'none'})
        $("#btn_update").css({'display':'inline'})
-
-
-
       $(".myinput").prop("disabled", true);
     });
   });
