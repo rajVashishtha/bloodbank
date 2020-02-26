@@ -17,13 +17,13 @@ def index(request):
      return render(request, 'adminpanel/adminhome.html')
 
 def home(request):
-    bank = request.session['admin_bank']
+    bank = request.session['admin_id']
     bags = BloodBag.objects.filter(blood_bank=bank)
     context = {
         "bloodbags": bags
     }
     return render(request,'adminpanel/controlpanel.html', context)
-
+ 
 
 
 def login(request):
@@ -44,7 +44,6 @@ def login(request):
    
 
     if email == q_email and password == q_password:
-        request.session['admin_bank'] = bank 
         request.session['admin_id'] = q_id
         request.session['admin_name'] = q_name
         return HttpResponseRedirect(reverse('admin-home'))

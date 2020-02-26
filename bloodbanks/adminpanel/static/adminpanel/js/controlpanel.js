@@ -15,7 +15,8 @@ $(document).ready(function() {
     //  }
     $("input").attr("min","0");
 
-    $("#btn_update").click(function() {
+    $("#btn_update").click(function(event) {
+      event.preventDefault();
       $(".myinput").prop("disabled", false);
       $("#btn_update").css({'display':'none'})
       $("#btn_save").css({'display':'inline'})
@@ -33,10 +34,7 @@ $(document).ready(function() {
       
        $("#btn_save").css({'display':'none'})
        $("#btn_update").css({'display':'inline'})
-
-
-
-      $(".myinput").prop("disabled", true);
+      $(".myinput").prop("disabled", true); 
     });
   });
 
